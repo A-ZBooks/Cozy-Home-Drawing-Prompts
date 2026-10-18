@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cozy Home Drawing Prompts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap">
+<style>
+/* Layout: centered hero with four tilted covers in a row, then collection intro, four alternating book spreads, A-Z facts, one signup card. Hand-drawn feel from wobbly pencil borders and wavy rules. */
+:root {
+  --paper: #fdf8f3;
+  --paper-2: #f7ede2;
+  --ink: #4a3a20;
+  --ink-soft: #6e5d45;
+  --peach: #e6a889;
+  --peach-deep: #b8674a;
+  --sage: #a9bf8f;
+  --butter: #f3dc9a;
+  --line: #d9c7ae;
+  --shadow: rgba(74, 58, 32, 0.18);
+  --font: "Crimson Text", Georgia, "Times New Roman", serif;
+  --wobble: 255px 18px 225px 18px / 18px 225px 18px 255px;
+  --wobble-2: 18px 220px 16px 240px / 230px 16px 220px 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #2a2118; --paper-2: #342a1e; --ink: #f6ead9; --ink-soft: #cdbb9f;
+    --peach: #e6a889; --peach-deep: #f0b99d; --sage: #8fa675; --butter: #e8cf86;
+    --line: #5a4a35; --shadow: rgba(0, 0, 0, 0.45); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #2a2118; --paper-2: #342a1e; --ink: #f6ead9; --ink-soft: #cdbb9f;
+  --peach: #e6a889; --peach-deep: #f0b99d; --sage: #8fa675; --butter: #e8cf86;
+  --line: #5a4a35; --shadow: rgba(0, 0, 0, 0.45); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font); font-size: 1.25rem; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+h1, h2, h3 { font-weight: 700; line-height: 1.08; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px dashed var(--peach-deep); outline-offset: 4px; }
+.wrap { max-width: 1060px; margin-inline: auto; }
+.eyebrow { font-size: 1rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+.peach { color: var(--peach); font-style: italic; }
+
+/* nav */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; flex-wrap: wrap; }
+.mark { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; font-weight: 700; font-size: 1.3rem; }
+.mark svg { width: 38px; height: 38px; }
+.nav-links { display: flex; gap: 1.5rem; font-size: 1.1rem; }
+.nav-links a { text-decoration: none; border-bottom: 2px solid transparent; }
+.nav-links a:hover { border-bottom-color: var(--peach); }
+
+/* buttons */
+.btn {
+  display: inline-block; font: inherit; font-weight: 700; font-size: 1.15rem; cursor: pointer;
+  background: var(--peach); color: #3b2c16; text-decoration: none;
+  border: 2.5px solid var(--ink); border-radius: var(--wobble);
+  padding: 0.6rem 1.6rem; box-shadow: 3px 4px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: translate(2px, 2px); box-shadow: 1px 2px 0 var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+
+/* hero */
+.hero { text-align: center; padding-block: 2.5rem 1rem; }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 5.2rem); margin-top: 0.6rem; }
+.hero h1 .l2 { display: block; font-style: italic; }
+.squig { display: block; width: min(320px, 70%); height: 14px; margin: 0.9rem auto 0; }
+.hero .sub { font-style: italic; font-size: clamp(1.35rem, 3.2vw, 1.8rem); margin-top: 1.1rem; }
+.hero .lede { max-width: 36em; margin: 1rem auto 0; color: var(--ink-soft); }
+.hero .cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.6rem; }
+.shelf { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.5rem, 2vw, 1.4rem); margin-top: 3rem; align-items: end; }
+.shelf a { display: block; transition: transform 0.2s ease; }
+.shelf a:nth-child(1) { transform: rotate(-3deg); }
+.shelf a:nth-child(2) { transform: rotate(1.5deg) translateY(-10px); }
+.shelf a:nth-child(3) { transform: rotate(-1.5deg) translateY(-4px); }
+.shelf a:nth-child(4) { transform: rotate(3deg); }
+.shelf a:hover { transform: rotate(0deg) translateY(-8px); }
+.shelf img, .spread img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 10px 24px var(--shadow), 0 0 0 1px var(--line); }
+.ground { height: 2px; margin-top: 0.4rem; background: repeating-linear-gradient(90deg, var(--line) 0 14px, transparent 14px 20px); }
+
+/* collection */
+.section { padding-block: clamp(3rem, 8vw, 5.5rem); }
+.about { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: start; }
+.about h2 { font-size: clamp(2rem, 5vw, 3.1rem); margin-top: 0.5rem; }
+.about .body { display: grid; gap: 1.1rem; min-width: 0; }
+.about .closer { font-style: italic; font-size: 1.5rem; color: var(--peach-deep); }
+
+/* books */
+.books-head { text-align: center; margin-bottom: 3rem; }
+.books-head h2 { font-size: clamp(2rem, 5vw, 3.1rem); margin-top: 0.5rem; }
+.spread { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; padding-block: 2rem; }
+.spread + .spread { border-top: 2px dashed var(--line); }
+.spread:nth-of-type(even) { grid-template-columns: 1fr minmax(0, 340px); }
+.spread:nth-of-type(even) .cover { order: 2; }
+.cover { justify-self: center; width: 100%; max-width: 340px; }
+.spread:nth-of-type(odd) .cover { transform: rotate(-2deg); }
+.spread:nth-of-type(even) .cover { transform: rotate(2deg); }
+.info { display: grid; gap: 0.9rem; min-width: 0; }
+.info h3 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); }
+.info .tag { font-style: italic; font-size: 1.3rem; color: var(--peach-deep); }
+.prompt { display: flex; gap: 1.1rem; align-items: center; margin-top: 0.3rem; padding: 1rem 1.3rem; background: var(--paper-2); border: 2.5px solid var(--ink); border-radius: var(--wobble-2); }
+.prompt .letter { flex: none; width: 3.6rem; height: 3.6rem; display: grid; place-items: center; font-size: 2.4rem; font-weight: 700; font-style: italic; color: #3b2c16; background: var(--butter); border: 2.5px solid var(--ink); border-radius: var(--wobble); }
+.prompt > div:last-child { min-width: 0; }
+.plabel { font-size: 0.95rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+.ptitle { font-size: 1.5rem; font-weight: 700; line-height: 1.15; }
+.ptext { color: var(--ink-soft); font-size: 1.1rem; line-height: 1.4; margin-top: 0.2rem; }
+.quote { text-align: center; max-width: 760px; margin-inline: auto; padding-block: clamp(2rem, 6vw, 4rem); }
+.quote blockquote { margin: 0; font-style: italic; font-weight: 600; font-size: clamp(1.7rem, 4.6vw, 2.7rem); line-height: 1.2; text-wrap: balance; }
+.quote .squig { margin-top: 1.2rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0.2rem 0 0; }
+.chips li { font-size: 1rem; padding: 0.15rem 0.9rem; border: 2px solid var(--line); border-radius: var(--wobble-2); background: var(--paper-2); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 0.6rem; }
+.info .meta { font-size: 1rem; color: var(--ink-soft); }
+
+/* A-Z facts */
+.facts { background: var(--paper-2); border-radius: var(--wobble); border: 2.5px solid var(--ink); padding: clamp(1.5rem, 4vw, 3rem); }
+.facts h2 { font-size: clamp(1.8rem, 4.5vw, 2.7rem); text-align: center; }
+.fact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+.fact { text-align: center; min-width: 0; }
+.fact .big { font-size: 2.6rem; font-weight: 700; color: var(--peach-deep); line-height: 1; }
+.fact p { margin-top: 0.5rem; color: var(--ink-soft); font-size: 1.1rem; }
+
+/* signup */
+.signup { text-align: center; max-width: 640px; margin-inline: auto; }
+.signup h2 { font-size: clamp(2rem, 5vw, 3rem); margin-top: 0.5rem; }
+.signup p.lede { margin-top: 1rem; color: var(--ink-soft); }
+.form { display: flex; gap: 0.8rem; margin-top: 1.6rem; flex-wrap: wrap; justify-content: center; }
+.form input[type="email"] {
+  flex: 1 1 260px; min-width: 0; font: inherit; font-size: 1.15rem; color: var(--ink); background: var(--paper);
+  border: 2.5px solid var(--ink); border-radius: var(--wobble-2); padding: 0.6rem 1.1rem;
+}
+.form input::placeholder { color: var(--ink-soft); opacity: 0.8; }
+.note { margin-top: 1rem; font-size: 1rem; color: var(--ink-soft); min-height: 1.5em; }
+
+footer { text-align: center; padding-block: 2.5rem 3rem; color: var(--ink-soft); font-size: 1rem; border-top: 2px dashed var(--line); }
+footer .tagline { font-style: italic; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.4rem; }
+
+@media (max-width: 760px) {
+  .shelf { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .shelf a:nth-child(n) { transform: rotate(-1.5deg); }
+  .shelf a:nth-child(even) { transform: rotate(1.5deg); }
+  .about { grid-template-columns: 1fr; }
+  .spread, .spread:nth-of-type(even) { grid-template-columns: 1fr; }
+  .spread:nth-of-type(even) .cover { order: 0; }
+  .fact-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn, .shelf a { transition: none; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <a class="mark" href="#top" aria-label="Cozy Home Drawing Prompts, home">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 19 L20 6 L35 19" /><path d="M9 17 V33 H31 V17" />
+        <text x="20" y="29" text-anchor="middle" font-family="Crimson Text, Georgia, serif" font-size="11" font-weight="700" fill="currentColor" stroke="none">A-Z</text>
+      </svg>
+      <span>Cozy Home</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#collection">Collection</a>
+      <a href="#books">The books</a>
+      <a href="#list">Join the list</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">A–Z drawing journals</p>
+      <h1><span class="peach">Cozy Home</span> <span class="l2">Drawing Prompts</span></h1>
+      <svg class="squig" viewBox="0 0 320 14" fill="none" stroke="var(--peach)" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M4 8 C 24 2, 34 14, 54 8 S 84 2, 104 8 S 134 14, 154 8 S 184 2, 204 8 S 234 14, 254 8 S 294 3, 316 8"/></svg>
+      <p class="sub">A journal for daily creative practice.</p>
+      <p class="lede">Four small books of 26 gentle prompts each, one for every letter of the alphabet. Pick a letter, pick up a pencil, and draw something that feels like home.</p>
+      <div class="cta">
+        <a class="btn" href="#books">Meet the four books</a>
+        <a class="btn ghost" href="#list">Join the list</a>
+      </div>
+      <div class="shelf">
+        <a href="#home"><img src="home.jpg" alt="Cover of Cozy Home Drawing Prompts: a linen apron on a peg rail with a mug, slippers and a lantern" width="900" height="1294"></a>
+        <a href="#city"><img src="city.jpg" alt="Cover of Cozy Home City Drawing Prompts: a bicycle in front of a cafe stoop with a black cat" width="900" height="1294"></a>
+        <a href="#garden"><img src="garden.jpg" alt="Cover of Cozy Garden Drawing Prompts: a rabbit beside a glowing lantern with a hummingbird above" width="900" height="1294"></a>
+        <a href="#animal"><img src="animal.jpg" alt="Cover of Cozy Animal Drawing Prompts: a sleeping fox among leaves, acorns and mushrooms" width="900" height="1294"></a>
+      </div>
+      <div class="ground" aria-hidden="true"></div>
+    </section>
+
+    <section class="section about" id="collection">
+      <div>
+        <p class="eyebrow">The collection</p>
+        <h2>Find your calm, one cozy letter at a time.</h2>
+      </div>
+      <div class="body">
+        <p>Each book is a gentle, creativity-boosting art journal for artists, beginners, and anyone who loves warm, comforting spaces. Every letter of the alphabet comes with one simple, inviting prompt inspired by the small details that make a place feel personal, peaceful, and lived-in.</p>
+        <p>The prompts encourage slow drawing, mindful sketching, and creative self-care. There is plenty of open space for your own ideas, details, and style, whether you draw daily, unwind after work, or want a relaxing weekend project.</p>
+        <p>They work well as sketchbook starters, cozy journaling, art practice, and stress relief. You get just enough structure to begin and all the freedom to make it your own.</p>
+      </div>
+    </section>
+
+    <section class="quote" aria-label="A note to you">
+      <blockquote>&ldquo;You are creative by nature, and the way you move through the world is a beautiful form of art.&rdquo;</blockquote>
+      <svg class="squig" viewBox="0 0 320 14" fill="none" stroke="var(--peach)" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M4 8 C 24 2, 34 14, 54 8 S 84 2, 104 8 S 134 14, 154 8 S 184 2, 204 8 S 234 14, 254 8 S 294 3, 316 8"/></svg>
+    </section>
+
+    <section class="section" id="books" style="padding-top:0">
+      <div class="books-head">
+        <p class="eyebrow">Four books, one cozy collection</p>
+        <h2>Choose your corner</h2>
+      </div>
+
+      <article class="spread" id="home">
+        <div class="cover"><img src="home.jpg" alt="Cozy Home Drawing Prompts cover" width="900" height="1294" loading="lazy"></div>
+        <div class="info">
+          <h3>Cozy Home</h3>
+          <p class="tag">26 home-inspired drawing prompts</p>
+          <p>Each letter of the alphabet features a simple, inviting drawing prompt inspired by the small details that make a home feel personal, peaceful, and lived‑in. These prompts help you reconnect with your imagination and create scenes that feel like home.</p>
+          <div class="prompt"><div class="letter" aria-hidden="true">A</div><div><p class="plabel">Sample prompt</p><p class="ptitle">Apron on the Hook</p><p class="ptext">Draw a well-loved apron hanging by the door. Draw what homemade recipe it was tied on for.</p></div></div>
+          <div class="actions"><a class="btn" href="https://www.amazon.com/dp/B0H4GF148L" target="_blank" rel="noopener">Buy on Amazon</a><a class="btn ghost" href="#list" data-buy="home">Get shop updates</a></div>
+        </div>
+      </article>
+
+      <article class="spread" id="city">
+        <div class="cover"><img src="city.jpg" alt="Cozy Home City Drawing Prompts cover" width="900" height="1294" loading="lazy"></div>
+        <div class="info">
+          <h3>Cozy Home City</h3>
+          <p class="tag">26 city-inspired drawing prompts</p>
+          <p>A–Z Cozy City: 26 Drawing Prompts is a gentle, creativity‑boosting art book designed for artists, beginners, and anyone who loves comforting city scene moments. Each letter of the alphabet features a simple, inviting drawing prompt inspired by the small details that make a city feel personal, peaceful, and lived‑in — from quiet corners and glowing windows to main streets and cozy urban scenes.</p>
+          <div class="prompt"><div class="letter" aria-hidden="true">B</div><div><p class="plabel">Sample prompt</p><p class="ptitle">Bus Stop Moment</p><p class="ptext">A simple bus stop with a bench. Draw you and a friend waiting here.</p></div></div>
+          <div class="actions"><a class="btn" href="https://www.amazon.com/dp/B0H63K5XJ3" target="_blank" rel="noopener">Buy on Amazon</a><a class="btn ghost" href="#list" data-buy="city">Get shop updates</a></div>
+        </div>
+      </article>
+
+      <article class="spread" id="garden">
+        <div class="cover"><img src="garden.jpg" alt="Cozy Garden Drawing Prompts cover" width="900" height="1294" loading="lazy"></div>
+        <div class="info">
+          <h3>Cozy Garden</h3>
+          <p class="tag">26 garden drawing prompts for easy, expressive sketching</p>
+          <p>Step into a peaceful garden world with this charming A–Z collection of 26 cozy garden drawing prompts. Each letter of the alphabet introduces a simple, creative garden‑themed idea to sketch — from plants and pathways to tiny outdoor moments that spark imagination. Designed for all ages and skill levels, this book makes drawing easy, relaxing, and fun.</p>
+          <div class="prompt"><div class="letter" aria-hidden="true">C</div><div><p class="plabel">Sample prompt</p><p class="ptitle">Clay Pots</p><p class="ptext">A cluster of mismatched clay pots overflowing with herbs and tiny blooms.</p></div></div>
+          <div class="actions"><a class="btn" href="https://www.amazon.com/dp/B0H5MNJ9V7" target="_blank" rel="noopener">Buy on Amazon</a><a class="btn ghost" href="#list" data-buy="garden">Get shop updates</a></div>
+        </div>
+      </article>
+
+      <article class="spread" id="animal">
+        <div class="cover"><img src="animal.jpg" alt="Cozy Animal Drawing Prompts cover" width="900" height="1294" loading="lazy"></div>
+        <div class="info">
+          <h3>Cozy Animals</h3>
+          <p class="tag">26 animal drawing prompts for easy, expressive sketching</p>
+          <p>Explore a fun A–Z collection of cozy animal drawing prompts designed for easy, relaxing sketching. This all‑ages drawing book features 26 alphabet‑organized prompts, each inspired by a cute, cozy moment from animal life. From A to Z, every page gives you a simple idea to draw, making it perfect for beginners, kids, teens, adults, and anyone who enjoys cozy animals and creative sketching.</p>
+          <div class="prompt"><div class="letter" aria-hidden="true">D</div><div><p class="plabel">Sample prompt</p><p class="ptitle">Deer in the Fog</p><p class="ptext">A gentle deer silhouette emerging from soft morning mist.</p></div></div>
+          <div class="actions"><a class="btn" href="https://www.amazon.com/dp/B0H4G9PH46" target="_blank" rel="noopener">Buy on Amazon</a><a class="btn ghost" href="#list" data-buy="animal">Get shop updates</a></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="facts">
+        <h2>How each journal works</h2>
+        <div class="fact-grid">
+          <div class="fact"><div class="big">A–Z</div><p>One prompt for every letter, so you always know where to begin.</p></div>
+          <div class="fact"><div class="big">26</div><p>Prompts per book. Do one a day, or a few over a slow weekend.</p></div>
+          <div class="fact"><div class="big">Open</div><p>Space on every page for your own ideas, details, and style.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section signup" id="list" style="padding-top:0">
+      <p class="eyebrow">Join the list</p>
+      <h2>Draw along with us</h2>
+      <p class="lede">Get news about new books in the collection and the occasional cozy prompt in your inbox. No spam, and you can leave any time.</p>
+      <form class="form" id="signup" novalidate>
+        <label for="email" class="eyebrow" style="position:absolute;left:-9999px">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn" type="submit">Sign me up</button>
+      </form>
+      <p class="note" id="note" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p class="tagline">A journal for daily creative practice.</p>
+    <p>Cozy Home Drawing Prompts &middot; Four A–Z journals</p>
+  </footer>
+</div>
+
+<script>
+/* Set a real shop link per book once the store is live. Empty means the button points to the signup. */
+var SHOP = { home: "", city: "", garden: "", animal: "" };
+var LABEL = "Buy this book";
+document.querySelectorAll("[data-buy]").forEach(function (a) {
+  var url = SHOP[a.getAttribute("data-buy")];
+  if (url) { a.href = url; a.textContent = LABEL; a.target = "_blank"; a.rel = "noopener"; }
+});
+document.getElementById("signup").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var v = document.getElementById("email").value.trim();
+  var note = document.getElementById("note");
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { note.textContent = "Please enter a valid email address."; return; }
+  note.textContent = "Preview only: connect your email service to start collecting addresses.";
+});
+</script>
+
+</body>
+</html>
